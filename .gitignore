@@ -150,8 +150,10 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+back/.env
 
 # Vercel
 .vercel
+
 
 # End of https://www.toptal.com/developers/gitignore/api/nextjs
