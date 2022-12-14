@@ -1,4 +1,4 @@
-## Next.js + RTK + tailwindCSS 로 만든 [KREAM](https://kream.co.kr/)사이트 만들기
+## Next.js + RTK + tailwindCSS + nextAuth + prisma + mysql 로 만든 [KREAM](https://kream.co.kr/)사이트 만들기
 
 
 ## 시작하기
@@ -15,3 +15,4 @@ yarn dev
 
 ## 진행상황
 2022.12.13 SearchBar 레이어 구현
+2022.12.14 kakao 로그인 구현
