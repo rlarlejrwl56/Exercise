@@ -3,15 +3,14 @@ import TopBar from "../components/common/TopBar";
 import wrapper, {persistor, store} from "../store";
 import {Provider} from "react-redux";
 import {PersistGate} from "redux-persist/integration/react";
+import { SessionProvider } from "next-auth/react"
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-      <Provider store={store}>
-          <PersistGate persistor={persistor} loading={null}>
+              <SessionProvider session = {session} >
             <TopBar/>
             <Component {...pageProps} />
-          </PersistGate>
-      </Provider>
+              </SessionProvider>
   );
 }
 
