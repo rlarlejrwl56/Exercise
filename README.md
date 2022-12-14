@@ -1,4 +1,4 @@
-## Next.js + RTK + tailwindCSS 로 만든 [KEREAM](https://kream.co.kr/)사이트 만들기
+## Next.js + RTK + tailwindCSS 로 만든 [KREAM](https://kream.co.kr/)사이트 만들기
 
 
 ## 시작하기
