@@ -22,6 +22,9 @@
     .reProductSt {
         @apply border w-20 h-20 rounded-md bg-gray-100;
     }
+    .snsLoginBtn {
+        @apply border border-gray-200  items-center flex rounded-lg h-12 w-full;
+    }
 }
 
 @variants focus {

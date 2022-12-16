@@ -1,17 +1,23 @@
 import Link from "next/link";
 import {useDispatch, useSelector} from "react-redux";
-import {useState} from "react";
+import {useState, useEffect, useRef} from "react";
 import {asyncLoginFetch} from '../../store/slices/loginSlice';
 import {useRouter} from "next/router";
+import NewWindow from 'react-new-window';
 import {useDidMountEffect} from "../../hooks/useDidMountEffect";
-
+import Image from 'next/image';
+import {signIn, useSession} from 'next-auth/react';
 const loginForm = () => {
    const [userId, setUserId] = useState('');
+   const [popup, setPopUp] = useState(false);
    const [password, setPassword] = useState('');
    const  isLogin  = useSelector(state => state.isLogin);
-   const status = useSelector(state => state.status);
+   //const status = useSelector(state => state.status);
+   const [prePage, setPrePage] = useState('');
    const dispatch = useDispatch();
    const router = useRouter();
+   const didMount = useRef(false);
+   const { data: session, status } = useSession();
    const onChangeUserId = e =>{
         setUserId(e.target.value);
    };
@@ -20,14 +26,14 @@ const loginForm = () => {
    }
    const onSubmit = e => {
        e.preventDefault();
-       const loginInfo = {
+      /* const loginInfo = {
            'userId' : userId,
            'password' : password
        }
-       dispatch(asyncLoginFetch(loginInfo));
+       dispatch(asyncLoginFetch(loginInfo));*/
    }
 
-    useDidMountEffect(() => {
+    useEffect(() => {
        if(status === 'complete'){
            if(isLogin){
                router.push('/');
@@ -37,10 +43,17 @@ const loginForm = () => {
        }
     }, [status]);
 
+    useEffect(() => {
+       if(didMount.current){
+           setPrePage(globalThis.sessionStorage.getItem('prevPath'));
+            }
+        return () => didMount.current = true;
+
+        },[status]);
 
     return (
         <div className="md:container md:mx-auto flex justify-center  ">
-            <div className=" py-28 text-center w-96">
+            <div className=" py-28 text-center w-96 flex-col">
                 <h1 className="font-black text-4xl italic">Kream</h1>
                 <p className="font-medium">KICK PULE EVERYTHING AROUND ME</p>
                 <form onSubmit={onSubmit}>
@@ -61,6 +74,15 @@ const loginForm = () => {
                     <li className='w-1/3 text-sm'><Link href='/register'>비밀번호 찾기</Link></li>
                 </ul>
                 </form>
+                <div className='flex flex-wrap snsLoginBtn mt-10 hover:cursor-pointer ' onClick={()=>signIn('naver',{callbackUrl:`${prePage}`})} style={{background : '#03c75A'}}>
+                    <div className='ml-12'>
+                    <Image src={require('../../public/images/naverLogin.png')}  className='w-8' alt='naverBtn'/>
+                    </div>
+                    <div className='text-sm ml-20'>
+                    <button >네이버 로그인</button>
+                    </div>
+                </div>
+                    <button className='mt-3 snsLoginBtn justify-center' onClick={()=>signIn('kakao',{callbackUrl:`${prePage}`})} style={{background:'#FEE500'}}><Image src={require('../../public/images/kakao_login_medium_wide.png')} className='w-fit' alt='kakaoBtn'/></button>
             </div>
         </div>
     )

@@ -7,6 +7,9 @@ module.exports = {
     extend: {
       width : {
         '800' : '800px'
+      },
+      flex : {
+        '0' : '0 0 100%'
       }
     },
   },
