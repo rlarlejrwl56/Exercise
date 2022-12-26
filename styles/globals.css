@@ -8,16 +8,16 @@
         @apply rounded-full border w-fit px-3 py-0.5 text-sm font-light bg-gray-100 mr-2 mt-2;
     }
     .searchLayer {
-        @apply container  pt-5 ml-4 max-lg:w-screen w-[800px] lg:mx-auto;
+        @apply container  pt-5 ml-4 max-lg:w-screen max-w-[800px] w-full lg:mx-auto;
     }
     .searchText {
         @apply font-semibold text-base;
     }
     .mobileCategory {
-        @apply bg-gray-100 border rounded-full w-36 h-36;
+        @apply bg-gray-100 max-w-[9rem] border rounded-full aspect-square p-8;
     }
     .webCategory {
-        @apply border w-36 h-20 rounded-md bg-gray-100;
+        @apply border max-w-[9rem] rounded-md bg-gray-100 ;
     }
     .reProductSt {
         @apply border w-20 h-20 rounded-md bg-gray-100;

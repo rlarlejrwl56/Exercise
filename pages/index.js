@@ -1,14 +1,22 @@
 import TopBar from "../components/common/TopBar";
 import { signIn, signOut, useSession } from "next-auth/react";
+import { useEffect } from 'react';
 export default function Home() {
     const { data: session, status } = useSession();
+    useEffect(() => {
+        return () => {
+            if(status==='authenticated'){
+            }
+        };
+    }, [status]);
+
     if(status === "authenticated"){
         return(
             <>
             <div>
                 {session.user.name}
                 <br/>
-                {session.user.image}
+                {session.provider}
                 <img src={session.user.image} width={800}/>
             </div>
         <button onClick={() => signOut('kakao')}>로그아웃</button>

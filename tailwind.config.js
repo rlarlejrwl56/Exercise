@@ -10,7 +10,11 @@ module.exports = {
       },
       flex : {
         '0' : '0 0 100%'
-      }
+      },
+      borderRadius : {
+        'half' : '50%',
+      },
+
     },
   },
   plugins: [],

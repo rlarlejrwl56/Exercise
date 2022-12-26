@@ -49,11 +49,13 @@ const popularBrand = () => {
             <div className='searchText'>인기 브랜드</div>
             <div className='flex  mt-4 flex-wrap justify-between'>
                 {popBrand.map((ctTag, index) => (
-                    <div className='text-center'>
-                        <div key={index} className='max-lg:mobileCategory webCategory'>
-                            <Image src={require(`../../public/images/category/${ctTag.imgName}.png`)} alt={index} width={80} height={100} className='m-auto lg:w-30 lg:h-30 max-lg:w-fit max-h-fit'/>
+                    <div className='text-center w-1/5'>
+                        <div key={index} >
+                            <div className='max-lg:mobileCategory webCategory'>
+                                <Image src={require(`../../public/images/category/${ctTag.imgName}.png`)} alt={index} height={60} className='mx-auto w-min'/>
+                            </div>
                         </div>
-                        <span className='text-sm'>{ctTag.name}</span>
+                        <span className='text-sm mr-4'>{ctTag.name}</span>
                     </div>
 
                 ))}
