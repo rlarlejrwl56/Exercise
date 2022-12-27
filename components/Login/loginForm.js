@@ -52,7 +52,7 @@ const loginForm = () => {
         },[status]);
 
     return (
-        <div className="md:container md:mx-auto flex justify-center  ">
+        <div className="md:container md:mx-auto flex justify-center">
             <div className=" py-28 text-center w-96 flex-col">
                 <h1 className="font-black text-4xl italic">Kream</h1>
                 <p className="font-medium">KICK PULE EVERYTHING AROUND ME</p>
@@ -82,7 +82,7 @@ const loginForm = () => {
                     <button >네이버 로그인</button>
                     </div>
                 </div>
-                    <button className='mt-3 snsLoginBtn justify-center' onClick={()=>signIn('kakao',{callbackUrl:`${prePage}`})} style={{background:'#FEE500'}}><Image src={require('../../public/images/kakao_login_medium_wide.png')} className='w-fit' alt='kakaoBtn'/></button>
+                    <button className='mt-3 snsLoginBtn justify-center' onClick={()=>signIn('kakao',{callbackUrl:`${prePage}`})} style={{background:'#FEE500'}}><Image src={require('../../public/images/kakao_login_medium_wide.png')} alt='kakaoBtn'/></button>
             </div>
         </div>
     )

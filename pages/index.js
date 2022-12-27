@@ -17,7 +17,6 @@ export default function Home() {
                 {session.user.name}
                 <br/>
                 {session.provider}
-                <img src={session.user.image} width={800}/>
             </div>
         <button onClick={() => signOut('kakao')}>로그아웃</button>
             </>

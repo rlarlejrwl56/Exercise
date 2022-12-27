@@ -6,7 +6,7 @@ import {PersistGate} from "redux-persist/integration/react";
 import { SessionProvider } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
-
+import Footer from '../components/common/Footer';
 function MyApp({ Component, pageProps: { session, ...pageProps } }) {
     const router = useRouter();
     useEffect(() => prePage, [router.asPath]);
@@ -23,7 +23,8 @@ function MyApp({ Component, pageProps: { session, ...pageProps } }) {
               refetchInterval={1*10}
               >
             <TopBar/>
-            <Component {...pageProps} />
+                <Component {...pageProps} />
+            <Footer/>
               </SessionProvider>
   );
 }
