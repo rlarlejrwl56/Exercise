@@ -1,4 +1,4 @@
-import loginReducer from "./slices/loginSlice";
+/*import loginReducer from "./slices/loginSlice";
 import {createWrapper} from "next-redux-wrapper";
 import {getDefaultMiddleware, configureStore} from "@reduxjs/toolkit";
 import {logger} from "redux-logger";
@@ -25,4 +25,4 @@ export const persistor = persistStore(store);
 const makeStore = () =>setupStore()
 const  wrapper = createWrapper(makeStore);
 
-export default wrapper;
+export default wrapper;*/

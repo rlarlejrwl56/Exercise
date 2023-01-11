@@ -4,7 +4,7 @@ import {faPlus, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const MyPageContainer = () => {
-    const {data: session} = useSession();
+    const {data: session, status} = useSession();
     return (
         <div>
             <div className='flex mx-0 my-auto py-[130px] pl-[40px] pb-[160px] border-b'>
@@ -57,8 +57,7 @@ const MyPageContainer = () => {
                     <div className='border w-full h-[231px] rounded-lg block'>
                         <div className='flex pt-[30px] pb-[32px] pl-[22px]'>
                             <div>
-                                <img className='border w-[100px] h-[100px] rounded-[50%]' src={session.user.image}
-                                     width={80}/>
+                                 <img className='border w-[100px] h-[100px] rounded-[50%]' src={session.user.image} width={80}/>
                             </div>
                             <div className='infoBox pl-4'>
                                 <div className='font-semibold text-lg'>{session.user.name}</div>

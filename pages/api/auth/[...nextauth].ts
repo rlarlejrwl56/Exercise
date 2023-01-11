@@ -1,18 +1,47 @@
-import { NextApiHandler } from 'next';
+import { NextApiHandler, NextApiRequest } from 'next';
 import NextAuth from 'next-auth';
 import Kakao from 'next-auth/providers/kakao';
 import prisma from '../../../lib/prisma';
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-
-
+import CredentialsProvider from 'next-auth/providers/credentials';
+import {compare} from 'bcryptjs';
+import crypto from "crypto";
 const authHandler: NextApiHandler = (req, res) => {
     NextAuth(req, res, options);
 }
 export default authHandler;
 
+
+
 export const options = {
     providers: [
-
+        CredentialsProvider({
+            id: "email-password-credential",
+            name : "Credential",
+            credentials : {
+                email : { label : 'Email', type: 'email'},
+                password : { label : 'Password', type : 'password'}
+            },
+            async authorize(credentials: Record<any, any>, req: NextApiRequest){
+                const user = await prisma.user.findUnique({
+                    where : {
+                        email : credentials.email
+                    },
+                    select : {
+                        email : true,
+                        password : true
+                    }
+                });
+                if(!user){
+                    throw new Error('No user found!');
+                }
+                const isValid = await compare(credentials.password, user.password);
+                if(!isValid){
+                    throw new Error('잘못된 비번');
+                }
+                return { email : user.email}
+            }
+        }),
         Kakao({
             clientId: process.env.KAKAO_CLIENT_ID,
             clientSecret: process.env.KAKAO_CLIENT_SECRET,
@@ -46,6 +75,7 @@ export const options = {
     },
     jwt: {
         secret: process.env.SECRET,
+        encryption: true,
     },
         callbacks: {
             async jwt({ token, account }) {
@@ -53,7 +83,6 @@ export const options = {
                     token.accessToken = account.access_token;
                     token.provider = account.provider;
                     token.userId = account.userId;
-                    console.log(account);
                 }
                 return token;
             },
@@ -66,7 +95,7 @@ export const options = {
     },
     adapter: PrismaAdapter(prisma),
     pages: {
-        signOut: '/'
+        signIn: '/login'
     }
 };
 

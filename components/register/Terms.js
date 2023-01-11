@@ -2,7 +2,7 @@ import {faPlus,faMinus ,faChevronRight} from "@fortawesome/free-solid-svg-icons"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {useEffect, useRef, useState} from 'react';
 
-const Terms = () => {
+const Terms = (props) => {
     const esDiv = useRef([]);
     const checkDiv = useRef([]);
     const [moreEssential, setMoreEssentail] = useState(false);
@@ -193,6 +193,7 @@ const Terms = () => {
     useEffect(() => {
         if (essential.optionAll) {
             checkDiv.current['all'].style.background = 'black';
+
         }else{
             checkDiv.current['all'].style.background = 'white';
         }
@@ -236,7 +237,13 @@ const Terms = () => {
                 checkDiv.current['allCh'].style.background = 'black';
             }
         }
-    }, [essential, moreEssential, choice]);
+        if(essential.optionAll){
+            props.setIsTerms(true);
+        }else {
+            props.setIsTerms(false);
+        }
+        console.log(essential);
+    }, [essential, moreEssential, choice, moreChoice]);
 
     return (
         <div>
